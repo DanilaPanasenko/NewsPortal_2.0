@@ -10,11 +10,8 @@ class PostForm(forms.ModelForm):
        model = Post
        fields = [
            'author',
-           #'type',
-           #'datetime_in', django.core.exceptions.FieldError: 'datetime_in' cannot be specified for Post model form as it is a non-editable field
            'headline',
            'text',
-           #'rating',
            'category',
        ]
 
