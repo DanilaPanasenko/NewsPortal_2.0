@@ -10,8 +10,11 @@ Posts
 <h1>Новости</h1>
 <h3>{{ time_now|date:'d M Y' }}</h3>
 <h3>Всего {{ posts|length }} новости</h3>
+{% if is_not_subscribers %}
+    <p class="text-center"><a href="{% url 'subscribe' category.id %}" class="btn btn-secondary btn-sm">Подписаться</a> </p>
+{% endif %}
 <hr>
-   {% if posts %}
+   {% if category_news_list %}
        <table>
            <tr>
                <td>Заголовок</td>
@@ -21,12 +24,12 @@ Posts
            </tr>
 
 
-           {% for post in posts %}
+           {% for post in category_news_list %}
            <tr>
                <td>{{ post.headline }}</td>
                <td>{{ post.some_datatime|date:'d M Y' }}</td>
                <td>{{ post.text|truncatechars:20|censor }}</td>
-                <td>
+               <td>
                    {% for category in post.category.all %}
                         <a href="{% url 'category_list' category.id %}">{{category}}</a>
                    {% endfor %}
